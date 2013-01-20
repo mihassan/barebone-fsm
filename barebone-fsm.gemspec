@@ -10,5 +10,5 @@ Gem::Specification.new do |s|
   s.authors     = ["Md. Imrul Hassan"]
   s.email       = 'mihassan@gmail.com'
   s.files       =  Dir.glob("{example,spec,lib}/**/*") + %w(README.rdoc MIT-LICENSE)
-  s.homepage    = 'http://rubygems.org/gems/barebone-fsm/'
+  s.homepage    = 'https://github.com/mihassan/barebone-fsm/'
 end
