@@ -4,10 +4,11 @@ Gem::Specification.new do |s|
   s.date        = '2013-01-20'
   s.summary     = "A barebone finite state machine(FSM)."
   s.description = "A barebone implementation of finite state machine keeping simplicity in mind."
+  s.license     = 'MIT'
   s.has_rdoc    = true
   s.extra_rdoc_files = ['README.rdoc']
   s.authors     = ["Md. Imrul Hassan"]
   s.email       = 'mihassan@gmail.com'
-  s.files       = ["lib/barebone-fsm.rb"]
-  s.homepage    = 'http://rubygems.org/gems/barebone-fsm'
+  s.files       =  Dir.glob("{example,spec,lib}/**/*") + %w(README.rdoc MIT-LICENSE)
+  s.homepage    = 'http://rubygems.org/gems/barebone-fsm/'
 end

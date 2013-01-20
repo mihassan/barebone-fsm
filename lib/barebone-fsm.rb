@@ -91,12 +91,15 @@ module FSM
   #   end
   #
   class FSM
+    
     attr_writer :event
+    
+    # Creates a new FSM object with an optional default state set.
     def initialize(default_state=nil) 
       @states = {}
       if default_state then
-        @state = @default = default_state 
-        @states[@state] = FSMState.new(self, @state)
+        @default = default_state 
+        @states[@default] = FSMState.new(self, @default)
       end
     end
     

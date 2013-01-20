@@ -1,5 +1,5 @@
 == Overview
-This module implements a basic finite-state machine (FSM).
+This module, barebone-fsm, implements a basic finite-state machine (FSM).
 An FSM consists of a finite number of states,
 with one of them being the current state of the FSM.
 Transitions are defined between states, which are triggered on events.
@@ -12,7 +12,8 @@ Only two classes for the FSM are defined as the following:
 * FSMState -> the state class
 
 Author:: Md. Imrul Hassan (mailto:mihassan@gmail.com)
-Copyright:: Copyright: Md. Imrul Hassan, 2013
+Copyright:: Copyright (c) 2013, Md. Imrul Hassan
+License:: Barebone-fsm is released under the MIT license. Please check the LICENSE file for more details.
 
 == Features
 Apart from having support for states and events, this module offers the following features:
