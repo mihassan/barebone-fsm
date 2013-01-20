@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'barebone-fsm'
-  s.version     = '0.0.2'
+  s.version     = '0.0.2.1'
   s.date        = '2013-01-20'
   s.summary     = "A barebone finite state machine(FSM)."
   s.description = "A barebone implementation of the finite state machine keeping simplicity in mind."
