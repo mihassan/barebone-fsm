@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.summary     = "A barebone finite state machine(FSM)."
   s.description = "A barebone implementation of finite state machine keeping simplicity in mind."
   s.has_rdoc    = true
-  s.extra_rdoc_files = ['README.md']
+  s.extra_rdoc_files = ['README.rdoc']
   s.authors     = ["Md. Imrul Hassan"]
   s.email       = 'mihassan@gmail.com'
   s.files       = ["lib/barebone-fsm.rb"]
