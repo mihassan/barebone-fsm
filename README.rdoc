@@ -1,0 +1,89 @@
+== Overview
+This module implements a basic finite-state machine (FSM).
+An FSM consists of a finite number of states,
+with one of them being the current state of the FSM.
+Transitions are defined between states, which are triggered on events.
+For details on FSM, see this wiki page: {FSM}[http://en.wikipedia.org/wiki/Finite-state_machine].
+
+The motivation behind the module was to implement a very basic barebone FSM in Ruby.
+Features are kept at minimum as well as the code.
+Only two classes for the FSM are defined as the following:
+* FSM -> the finite state machine class
+* FSMState -> the state class
+
+Author:: Md. Imrul Hassan (mailto:mihassan@gmail.com)
+Copyright:: Copyright: Md. Imrul Hassan, 2013
+
+== Features
+Apart from having support for states and events, this module offers the following features:
+1. Default state
+2. Default event for each state
+3. Entry and exit events for each state
+4. DSL like coding style
+5. Access to state variables (including @state and @event) inside event blocks.
+
+== Usage
+The FSM can be setup and triggered Succinctly using Domain Specific Language(DSL) like coding style.
+There are two methods to build and run which are defined for both FSM and FSMState classes.
+These methods, #build and #run, are alias of each other and can be used interchangebly.
+A basic fintite-state machine for a microwave is simulated in the following example:
+
+  fsm = FSM::FSM.new(:stopped) # :stopped is the default state to fall back
+  
+  fsm.build do # the states and events can be configured within the build block
+    state :stopped do # the events can be setup within the state block for :stopped state
+      event :open do # the event block is run when the event :open is triggered
+        puts "[Stopped]: Door Opened"
+        :open # the return value of the event block, :open, is the next state
+      end
+      event :start do
+        puts "[Stopped]: Started"
+        :started
+      end
+    end
+    state :open do
+      event :close do
+        puts "[#{@state}]: Door #{@event}" # the event block has access to state variables such as @state and @event
+        :stopped
+      end
+    end
+    state :started do
+      event :open do
+        @open_time = Time::now # new state variables can be defined
+        puts "[Started]: Door Opened"
+        :open
+      end
+      event :stop do
+        puts "The door was opened at #{@open_time}" # state variables from other event blocks can be used
+        puts "[Started]: Door Stopped after #{elapsed_time}"
+        :stopped
+      end
+    end
+  end
+  
+  fsm.run do # the events can be triggered from the run block
+    event :start
+    event :open
+    event :close
+    event :start
+    event :stop
+  end
+  
+  puts fsm
+
+== Status
+The module works as it is, but further testing and documentation is needed.
+The api is not stable yet, it may go trhough lots of changes before the first stable version is released.
+I am open to any suggestion or request to support custom features.
+
+== Changes
+* Version: 0.0.2
+  * State variables defined in other states can be accessed in the event block as well.
+* Version: 0.0.1.3
+  * Minor fixes on the usage examples.
+* Version: 0.0.1.2
+  * @state instance variable for FSM is dropped in favour of the #state instance method.
+  * #state method and index operator [] now accept nil arguement for state name, which returns the current state.
+  * Two methods #build and #run are added to FSM and FSMState classes to support DSL like features.
+  * Explicit parameter passing for the event blocks is no longer available. 
+    Instead the block code for the events now have access to all instance variables of FSMState class such as @state and @event.
