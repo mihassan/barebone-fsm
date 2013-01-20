@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version     = '0.0.2'
   s.date        = '2013-01-20'
   s.summary     = "A barebone finite state machine(FSM)."
-  s.description = "A barebone implementation of finite state machine keeping simplicity in mind."
+  s.description = "A barebone implementation of the finite state machine keeping simplicity in mind."
   s.license     = 'MIT'
   s.has_rdoc    = true
   s.extra_rdoc_files = ['README.rdoc']
