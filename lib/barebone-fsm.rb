@@ -52,8 +52,12 @@ module FSM
     # Otherwise, when the event_block is missing, the event_name is triggered.
     # If the event is nil or not already setup, then the default event is triggered.
     def event(event_name, &event_block)
-      if event_name and block_given? then
+      if block_given? then
         @events[event_name] = event_block
+      elsif event_name.is_a?(Hash) then
+        event_name.each{ |ev, st|
+          @events[ev] = Proc.new{st}
+        }
       elsif event_name and @events.has_key? event_name then
         @fsm.event = event_name
         @fsm.instance_eval &@events[event_name]
@@ -137,15 +141,17 @@ module FSM
     # It triggers the event_name event and changes the state of the FSM to its new state.
     # The :entry and :exit events are called on the leaving state and the entering state.
     # If the event does not mention the new state, then the state changes to the default state.
-    def event(event_name)
-      @event = event_name 
-      @states[@state].event :exit
-      new_state = @states[@state].event event_name
-      new_state = nil if not @states.has_key? new_state
-      new_state ||= @default
-      new_state ||= @state 
-      @state = new_state
-      @states[@state].event :enter
+    def event(*event_names)
+      for event_name in event_names do
+        @event = event_name 
+        @states[@state].event :exit
+        new_state = @states[@state].event event_name
+        new_state = nil if not @states.has_key? new_state
+        new_state ||= @default
+        new_state ||= @state 
+        @state = new_state
+        @states[@state].event :enter
+      end
     end
     
     # The #build/#run method sets up the states and events as given in the build_block.
@@ -158,5 +164,11 @@ module FSM
     alias_method :run, :build
 
   end
+
+  def build(&build_block)
+    @fsm ||= FSM.new
+    @fsm.build(&build_block)
+  end
+  alias_method :run, :build
 
 end

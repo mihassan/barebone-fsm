@@ -1,9 +1,8 @@
 require '../lib/barebone-fsm'
 
 fsm = FSM::FSM.new(:default)
-
 fsm.build do
-
+  @x = 0
   state :default do
     event :open do
       puts "#{@x} transition: default->open"
@@ -17,7 +16,6 @@ fsm.build do
 
   state :open do
     event :close do
-      @x ||= 0
       @x+=1
       puts "#{@x} transition: open->close"
       :close
@@ -26,14 +24,13 @@ fsm.build do
 
   state :close do
     event :open do
-      @x ||= 0
       @x+=1
       puts "#{@x} transition: close->open"
       :open
     end
   end
 
-end
+  end
 
 puts fsm
 
