@@ -1,1 +1,4 @@
-lib/barebone-fsm.rb 6f50843379a435a479054f0933314d117d557889
+lib/barebone-fsm.rb 3ea72c98d84ccd118cc5f8653bb3826ef08d18b5
+example/door.rb d1c767ee32175f58bb26a9ed1aff3ad10c4bf038
+example/microwave.rb 94ae327ad16ef00ce4e67c3bf22c4a376b00674f
+example/vehicle_class.rb 77ed1d65b0b5868ba9128f53e99c3f6be5b19959

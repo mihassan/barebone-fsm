@@ -407,12 +407,12 @@ out by the #event method.</p>
       <pre class="lines">
 
 
-69
-70
-71</pre>
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/barebone-fsm.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/barebone-fsm.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_build_block'>build_block</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span> <span class='op'>&amp;</span><span class='id identifier rubyid_build_block'>build_block</span>
@@ -460,14 +460,22 @@ the event is nil or not already setup, then the default event is triggered.</p>
 61
 62
 63
-64</pre>
+64
+65
+66
+67
+68</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/barebone-fsm.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_event'>event</span><span class='lparen'>(</span><span class='id identifier rubyid_event_name'>event_name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_event_block'>event_block</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_event_name'>event_name</span> <span class='kw'>and</span> <span class='id identifier rubyid_block_given?'>block_given?</span> <span class='kw'>then</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span> <span class='kw'>then</span>
     <span class='ivar'>@events</span><span class='lbracket'>[</span><span class='id identifier rubyid_event_name'>event_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_event_block'>event_block</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_event_name'>event_name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='kw'>then</span>
+    <span class='id identifier rubyid_event_name'>event_name</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ev'>ev</span><span class='comma'>,</span> <span class='id identifier rubyid_st'>st</span><span class='op'>|</span>
+      <span class='ivar'>@events</span><span class='lbracket'>[</span><span class='id identifier rubyid_ev'>ev</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Proc</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lbrace'>{</span><span class='id identifier rubyid_st'>st</span><span class='rbrace'>}</span>
+    <span class='rbrace'>}</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_event_name'>event_name</span> <span class='kw'>and</span> <span class='ivar'>@events</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_event_name'>event_name</span> <span class='kw'>then</span>
     <span class='ivar'>@fsm</span><span class='period'>.</span><span class='id identifier rubyid_event'>event</span> <span class='op'>=</span> <span class='id identifier rubyid_event_name'>event_name</span>
     <span class='ivar'>@fsm</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span> <span class='op'>&amp;</span><span class='ivar'>@events</span><span class='lbracket'>[</span><span class='id identifier rubyid_event_name'>event_name</span><span class='rbracket'>]</span>
@@ -522,7 +530,7 @@ the event is nil or not already setup, then the default event is triggered.</p>
 </div>
 
     <div id="footer">
-  Generated on Sun Jan 20 19:54:46 2013 by
+  Generated on Wed Jan 23 15:19:32 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

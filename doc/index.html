@@ -67,8 +67,8 @@
 <p>This module, barebone-fsm, implements a basic finite-state machine (FSM).
 An FSM consists of a finite number of states, with one of them being the
 current state of the FSM. Transitions are defined between states, which are
-triggered on events. For details on FSM, see this wiki page:
-<a href="http://en.wikipedia.org/wiki/Finite-state_machine" target="_parent" title="FSM">FSM</a>.</p>
+triggered on events. For details on FSM, see this wiki page: <a
+href="http://en.wikipedia.org/wiki/Finite-state_machine">FSM</a>.</p>
 
 <p>The motivation behind the module was to implement a very basic barebone FSM
 in Ruby. Features are kept at minimum as well as the code. Only two classes
@@ -87,8 +87,8 @@ href="mailto:mihassan@gmail.com">mihassan@gmail.com</a>)</p>
 <p>Copyright (c) 2013, Md. Imrul Hassan</p>
 </td></tr><tr><td class="rdoc-term"><p>License</p></td>
 <td>
-<p>Barebone-fsm is released under the MIT license. Please check the
-<a href="file.MIT-LICENSE.html" title="LICENSE">LICENSE</a> file for more details.</p>
+<p>Barebone-fsm is released under the MIT license. Please check the <a
+href="file:MIT-LICENSE">LICENSE</a> file for more details.</p>
 </td></tr></table>
 
 <h2>Features</h2>
@@ -118,7 +118,8 @@ fintite-state machine for a microwave is simulated in the following
 example:</p>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_fsm'>fsm</span> <span class='op'>=</span> <span class='const'>FSM</span><span class='op'>::</span><span class='const'>FSM</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:stopped</span><span class='rparen'>)</span> <span class='comment'># :stopped is the default state to fall back
-</span><span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span> <span class='kw'>do</span> <span class='comment'># the states and events can be configured within the build block
+</span>
+<span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span> <span class='kw'>do</span> <span class='comment'># the states and events can be configured within the build block
 </span>  <span class='id identifier rubyid_state'>state</span> <span class='symbol'>:stopped</span> <span class='kw'>do</span> <span class='comment'># the events can be setup within the state block for :stopped state
 </span>    <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:open</span> <span class='kw'>do</span> <span class='comment'># the event block is run when the event :open is triggered
 </span>      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Stopped]: Door Opened</span><span class='tstring_end'>&quot;</span></span>
@@ -148,6 +149,7 @@ example:</p>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
+
 <span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span> <span class='comment'># the events can be triggered from the run block
 </span>  <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:start</span>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:open</span>
@@ -155,6 +157,7 @@ example:</p>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:start</span>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:stop</span>
 <span class='kw'>end</span>
+
 <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_fsm'>fsm</span></code></pre>
 
 <h2>Status</h2>
@@ -196,7 +199,7 @@ variables of FSMState class such as @state and @event.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Sun Jan 20 19:54:46 2013 by
+  Generated on Wed Jan 23 15:19:32 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
