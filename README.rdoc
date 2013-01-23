@@ -13,7 +13,7 @@ Only two classes for the FSM are defined as the following:
 
 Author:: Md. Imrul Hassan (mailto:mihassan@gmail.com)
 Copyright:: Copyright (c) 2013, Md. Imrul Hassan
-License:: Barebone-fsm is released under the MIT license. Please check the {LICENSE}[file:MIT-LICENSE] file for more details.
+License:: Barebone-fsm is released under the MIT license. Please check the {LICENSE}[link:MIT-LICENSE] file for more details.
 
 == Features
 Apart from having support for states and events, this module offers the following features:
