@@ -70,14 +70,17 @@ current state of the FSM. Transitions are defined between states, which are
 triggered on events. For details on FSM, see this wiki page: <a
 href="http://en.wikipedia.org/wiki/Finite-state_machine">FSM</a>.</p>
 
-<p>The motivation behind the module was to implement a very basic barebone FSM
-in Ruby. Features are kept at minimum as well as the code. Only two classes
-for the FSM are defined as the following:</p>
+<p>The motivation behind the module was to implement a very basic barebone
+<span class='object_link'><a href="FSM.html" title="FSM (module)">FSM</a></span> in Ruby. Features are kept at minimum as well as the code. Only two
+classes for the FSM are defined as the following:</p>
 <ul><li>
-<p>FSM -&gt; the finite state machine class</p>
+<p><span class='object_link'><a href="FSM/FSM.html" title="FSM::FSM (class)">FSM::FSM</a></span> -&gt; the finite state machine class</p>
 </li><li>
-<p>FSMState -&gt; the state class</p>
+<p><span class='object_link'><a href="FSM/FSMState.html" title="FSM::FSMState (class)">FSM::FSMState</a></span> -&gt; the state class</p>
 </li></ul>
+
+<p>The <span class='object_link'><a href="FSM.html" title="FSM (module)">FSM</a></span> Module when included in a class also provides few convenience
+methods. For further details see the README file.</p>
 <table class="rdoc-list"><tr><td class="rdoc-term"><p>Author</p></td>
 <td>
 <p>Md. Imrul Hassan (<a
@@ -87,8 +90,7 @@ href="mailto:mihassan@gmail.com">mihassan@gmail.com</a>)</p>
 <p>Copyright (c) 2013, Md. Imrul Hassan</p>
 </td></tr><tr><td class="rdoc-term"><p>License</p></td>
 <td>
-<p>Barebone-fsm is released under the MIT license. Please check the <a
-href="MIT-LICENSE">LICENSE</a> file for more details.</p>
+<p>Barebone-fsm is released under the MIT license</p>
 </td></tr></table>
 
 <h2>Features</h2>
@@ -104,8 +106,13 @@ following features:</p>
 </li><li>
 <p>DSL like coding style</p>
 </li><li>
-<p>Access to state variables (including @state and @event) inside event
-blocks.</p>
+<p>Access to state variables (including @state and @event) inside event blocks</p>
+</li><li>
+<p>The module when included in a Class, provides methods to setup the state
+machine and trigger events</p>
+</li><li>
+<p>Dynamic methods generated for the Class to check states, events and trigger
+events.</p>
 </li></ol>
 
 <h2>Usage</h2>
@@ -118,8 +125,7 @@ fintite-state machine for a microwave is simulated in the following
 example:</p>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_fsm'>fsm</span> <span class='op'>=</span> <span class='const'>FSM</span><span class='op'>::</span><span class='const'>FSM</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:stopped</span><span class='rparen'>)</span> <span class='comment'># :stopped is the default state to fall back
-</span>
-<span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span> <span class='kw'>do</span> <span class='comment'># the states and events can be configured within the build block
+</span><span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span> <span class='kw'>do</span> <span class='comment'># the states and events can be configured within the build block
 </span>  <span class='id identifier rubyid_state'>state</span> <span class='symbol'>:stopped</span> <span class='kw'>do</span> <span class='comment'># the events can be setup within the state block for :stopped state
 </span>    <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:open</span> <span class='kw'>do</span> <span class='comment'># the event block is run when the event :open is triggered
 </span>      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Stopped]: Door Opened</span><span class='tstring_end'>&quot;</span></span>
@@ -149,7 +155,6 @@ example:</p>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
-
 <span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span> <span class='comment'># the events can be triggered from the run block
 </span>  <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:start</span>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:open</span>
@@ -157,18 +162,29 @@ example:</p>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:start</span>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:stop</span>
 <span class='kw'>end</span>
-
 <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_fsm'>fsm</span></code></pre>
 
 <h2>Status</h2>
 
-<p>The module works as it is, but further testing and documentation is needed.
-The api is not stable yet, it may go trhough lots of changes before the
-first stable version is released. I am open to any suggestion or request to
-support custom features.</p>
+<p>The module works as it is, I have added some testing and documentation; it
+may be expanded. The api is not stable yet, it may go trhough lots of
+changes before the first stable version is released. I am open to any
+suggestion or request to support custom features.</p>
 
 <h2>Changes</h2>
 <ul><li>
+<p>Version: 0.0.3</p>
+<ul><li>
+<p>Added Module level methods for easy access to states and events.</p>
+</li><li>
+<p>Added documentations for all the methods.</p>
+</li><li>
+<p>Added Module level dynamic methods to check states, events and to trigger
+events.</p>
+</li><li>
+<p>Added some testing codes using RSpec.</p>
+</li></ul>
+</li><li>
 <p>Version: 0.0.2</p>
 <ul><li>
 <p>State variables defined in other states can be accessed in the event block
@@ -199,7 +215,7 @@ variables of FSMState class such as @state and @event.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Wed Jan 23 15:24:14 2013 by
+  Generated on Sat Jan 26 18:02:31 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

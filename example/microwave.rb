@@ -44,6 +44,7 @@ fsm.run do
   event :close
   event :start
   event :stop
+  
 end
 
 puts fsm

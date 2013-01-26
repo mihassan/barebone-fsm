@@ -1,4 +1,4 @@
-require '../lib/barebone-fsm'
+require 'spec_helper'
 
 describe FSM::FSM do
   

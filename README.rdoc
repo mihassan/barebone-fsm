@@ -5,15 +5,17 @@ with one of them being the current state of the FSM.
 Transitions are defined between states, which are triggered on events.
 For details on FSM, see this wiki page: {FSM}[http://en.wikipedia.org/wiki/Finite-state_machine].
 
-The motivation behind the module was to implement a very basic barebone FSM in Ruby.
+The motivation behind the module was to implement a very basic barebone {FSM} in Ruby.
 Features are kept at minimum as well as the code.
 Only two classes for the FSM are defined as the following:
-* FSM -> the finite state machine class
-* FSMState -> the state class
+* {FSM::FSM} -> the finite state machine class
+* {FSM::FSMState} -> the state class
+The {FSM} Module when included in a class also provides few convenience methods.
+For further details see the README file.
 
 Author:: Md. Imrul Hassan (mailto:mihassan@gmail.com)
 Copyright:: Copyright (c) 2013, Md. Imrul Hassan
-License:: Barebone-fsm is released under the MIT license. Please check the {LICENSE}[link:MIT-LICENSE] file for more details.
+License:: Barebone-fsm is released under the MIT license
 
 == Features
 Apart from having support for states and events, this module offers the following features:
@@ -21,7 +23,9 @@ Apart from having support for states and events, this module offers the followin
 2. Default event for each state
 3. Entry and exit events for each state
 4. DSL like coding style
-5. Access to state variables (including @state and @event) inside event blocks.
+5. Access to state variables (including @state and @event) inside event blocks
+6. The module when included in a Class, provides methods to setup the state machine and trigger events
+7. Dynamic methods generated for the Class to check states, events and trigger events.
 
 == Usage
 The FSM can be setup and triggered Succinctly using Domain Specific Language(DSL) like coding style.
@@ -73,11 +77,16 @@ A basic fintite-state machine for a microwave is simulated in the following exam
   puts fsm
 
 == Status
-The module works as it is, but further testing and documentation is needed.
+The module works as it is, I have added some testing and documentation; it may be expanded.
 The api is not stable yet, it may go trhough lots of changes before the first stable version is released.
 I am open to any suggestion or request to support custom features.
 
 == Changes
+* Version: 0.0.3
+  * Added Module level methods for easy access to states and events.
+  * Added documentations for all the methods.
+  * Added Module level dynamic methods to check states, events and to trigger events.
+  * Added some testing codes using RSpec.
 * Version: 0.0.2
   * State variables defined in other states can be accessed in the event block as well.
 * Version: 0.0.1.3
