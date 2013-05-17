@@ -1,4 +1,4 @@
-require '../lib/barebone-fsm'
+require_relative 'example_helper'
 
 fsm = FSM::FSM.new
 

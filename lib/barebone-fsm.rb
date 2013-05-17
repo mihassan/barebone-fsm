@@ -57,6 +57,7 @@ module FSM
     
     ##
     # A String representation of the FSMState object.
+    #
     def to_s() 
       @state.to_s + 
         ": [" + 
@@ -195,6 +196,7 @@ module FSM
 
     ##
     # A String representation of the FSM object.    
+    #
     def to_s() 
       "FSM" + 
         ": {" + 

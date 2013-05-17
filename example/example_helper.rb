@@ -1,3 +1,1 @@
-require './door.rb'
-require './microwave.rb'
-require './vehicle_class.rb'
+require_relative '../lib/barebone-fsm'

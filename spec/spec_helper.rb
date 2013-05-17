@@ -1,1 +1,1 @@
-require '../lib/barebone-fsm'
+require_relative '../lib/barebone-fsm'

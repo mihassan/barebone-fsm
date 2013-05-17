@@ -33,13 +33,13 @@ There are two methods to build and run which are defined for both FSM and FSMSta
 These methods, #build and #run, are alias of each other and can be used interchangebly.
 A basic fintite-state machine for a microwave is simulated in the following example:
 
-  fsm = FSM::FSM.new(:stopped) # :stopped is the default state to fall back
+  fsm = FSM::FSM.new(:stopped)
   
-  fsm.build do # the states and events can be configured within the build block
-    state :stopped do # the events can be setup within the state block for :stopped state
-      event :open do # the event block is run when the event :open is triggered
+  fsm.build do
+    state :stopped do
+      event :open do
         puts "[Stopped]: Door Opened"
-        :open # the return value of the event block, :open, is the next state
+        :open
       end
       event :start do
         puts "[Stopped]: Started"
@@ -48,33 +48,31 @@ A basic fintite-state machine for a microwave is simulated in the following exam
     end
     state :open do
       event :close do
-        puts "[#{@state}]: Door #{@event}" # the event block has access to state variables such as @state and @event
+        puts "[#{@state}]: Door #{@event}"
         :stopped
       end
     end
     state :started do
       event :open do
-        @open_time = Time::now # new state variables can be defined
+        @open_time = Time::now
         puts "[Started]: Door Opened"
         :open
       end
       event :stop do
-        puts "The door was opened at #{@open_time}" # state variables from other event blocks can be used
+        puts "The door was opened at #{@open_time}"
         puts "[Started]: Door Stopped after #{elapsed_time}"
         :stopped
       end
     end
   end
   
-  fsm.run do # the events can be triggered from the run block
+  fsm.run do
     event :start
     event :open
     event :close
     event :start
     event :stop
   end
-  
-  puts fsm
 
 == Status
 The module works as it is, I have added some testing and documentation; it may be expanded.

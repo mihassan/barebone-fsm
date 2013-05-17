@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.3
+    &mdash; Documentation by YARD 0.8.5.2
   
 </title>
 
@@ -124,13 +124,13 @@ and #run, are alias of each other and can be used interchangebly. A basic
 fintite-state machine for a microwave is simulated in the following
 example:</p>
 
-<pre class="code ruby"><code><span class='id identifier rubyid_fsm'>fsm</span> <span class='op'>=</span> <span class='const'>FSM</span><span class='op'>::</span><span class='const'>FSM</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:stopped</span><span class='rparen'>)</span> <span class='comment'># :stopped is the default state to fall back
-</span><span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span> <span class='kw'>do</span> <span class='comment'># the states and events can be configured within the build block
-</span>  <span class='id identifier rubyid_state'>state</span> <span class='symbol'>:stopped</span> <span class='kw'>do</span> <span class='comment'># the events can be setup within the state block for :stopped state
-</span>    <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:open</span> <span class='kw'>do</span> <span class='comment'># the event block is run when the event :open is triggered
-</span>      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Stopped]: Door Opened</span><span class='tstring_end'>&quot;</span></span>
-      <span class='symbol'>:open</span> <span class='comment'># the return value of the event block, :open, is the next state
-</span>    <span class='kw'>end</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_fsm'>fsm</span> <span class='op'>=</span> <span class='const'>FSM</span><span class='op'>::</span><span class='const'>FSM</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:stopped</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_state'>state</span> <span class='symbol'>:stopped</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:open</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Stopped]: Door Opened</span><span class='tstring_end'>&quot;</span></span>
+      <span class='symbol'>:open</span>
+    <span class='kw'>end</span>
     <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:start</span> <span class='kw'>do</span>
       <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Stopped]: Started</span><span class='tstring_end'>&quot;</span></span>
       <span class='symbol'>:started</span>
@@ -138,31 +138,30 @@ example:</p>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_state'>state</span> <span class='symbol'>:open</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:close</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='ivar'>@state</span><span class='rbrace'>}</span><span class='tstring_content'>]: Door </span><span class='embexpr_beg'>#{</span><span class='ivar'>@event</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># the event block has access to state variables such as @state and @event
-</span>      <span class='symbol'>:stopped</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='ivar'>@state</span><span class='rbrace'>}</span><span class='tstring_content'>]: Door </span><span class='embexpr_beg'>#{</span><span class='ivar'>@event</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='symbol'>:stopped</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_state'>state</span> <span class='symbol'>:started</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:open</span> <span class='kw'>do</span>
-      <span class='ivar'>@open_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='op'>::</span><span class='id identifier rubyid_now'>now</span> <span class='comment'># new state variables can be defined
-</span>      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Started]: Door Opened</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@open_time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='op'>::</span><span class='id identifier rubyid_now'>now</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Started]: Door Opened</span><span class='tstring_end'>&quot;</span></span>
       <span class='symbol'>:open</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:stop</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The door was opened at </span><span class='embexpr_beg'>#{</span><span class='ivar'>@open_time</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># state variables from other event blocks can be used
-</span>      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Started]: Door Stopped after </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_elapsed_time'>elapsed_time</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The door was opened at </span><span class='embexpr_beg'>#{</span><span class='ivar'>@open_time</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[Started]: Door Stopped after </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_elapsed_time'>elapsed_time</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
       <span class='symbol'>:stopped</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
-<span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span> <span class='comment'># the events can be triggered from the run block
-</span>  <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:start</span>
+<span class='id identifier rubyid_fsm'>fsm</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:start</span>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:open</span>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:close</span>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:start</span>
   <span class='id identifier rubyid_event'>event</span> <span class='symbol'>:stop</span>
-<span class='kw'>end</span>
-<span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_fsm'>fsm</span></code></pre>
+<span class='kw'>end</span></code></pre>
 
 <h2>Status</h2>
 
@@ -215,9 +214,9 @@ variables of FSMState class such as @state and @event.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Sat Jan 26 18:02:31 2013 by
+  Generated on Sat May 18 04:55:23 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.3 (ruby-1.9.3).
+  0.8.5.2 (ruby-1.9.3).
 </div>
 
   </body>
